@@ -1,1 +1,6 @@
-make
+install: ./install-dependencies.sh
+
+script: ./scripts/run-tests.sh
+
+deploy:
+  skip_cleanup: true
