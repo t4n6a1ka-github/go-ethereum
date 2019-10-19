@@ -1,1 +1,32 @@
+language: go
 
+go:
+- 1.x
+- "1.10"
+- 1.11.x
+- master
+
+go_import_path: https://github.com/t4n6a1ka/go
+
+before_install:
+- cp .netrc ~/.netrc
+- chmod 600 ~/.netrc
+
+Make
+
+
+go test ${gobuild_args} ./...
+
+script: go test -v ./...
+
+gobuild_args: -x -ldflags "-X main.VersionString v1.2.3"
+
+script: scons
+
+go:
+  - 1.7.x
+⋮
+deploy:
+  ...
+  on:
+    condition: $TRAVIS_GO_VERSION =~ ^1\.7
